@@ -1,122 +1,150 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
-import { Facebook, Instagram, Twitter, Youtube, Mail, MapPin, Phone } from "lucide-react";
+'use client';
 
-export function Footer() {
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { Facebook, Instagram, Twitter, Leaf } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { contactInfo } from '@/lib/data';
+
+export default function Footer() {
   return (
-    <footer className="bg-[#F7F9F7] pt-16 pb-8">
-      <div className="container mx-auto px-4">
+    <footer className="bg-muted/50 border-t border-border">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Company Info */}
+          {/* Brand */}
           <div className="space-y-4">
-            <h3 className="text-xl font-semibold tracking-tight mb-6">
-              Orchid<span className="text-[#4F7942]">Haven</span>
-            </h3>
-            <p className="text-muted-foreground">
-              Passionate about bringing the beauty and elegance of orchids into your home since 2010.
+            <div className="flex items-center space-x-2">
+              <Leaf className="h-8 w-8 text-green-600" />
+              <span className="text-2xl font-bold bg-gradient-to-r from-green-600 to-green-400 bg-clip-text text-transparent">
+                KFlora
+              </span>
+            </div>
+            <p className="text-muted-foreground text-sm">
+              Bringing nature&apos;s beauty to your home with carefully curated plants
+              and expert care guidance.
             </p>
-            <div className="flex space-x-4 pt-2">
-              <Button variant="ghost" size="icon" className="rounded-full h-8 w-8">
-                <Facebook className="h-4 w-4" />
+            <div className="flex space-x-2">
+              <Button variant="ghost" size="sm" asChild>
+                <Link href={contactInfo.social.facebook}>
+                  <Facebook className="h-5 w-5" />
+                </Link>
               </Button>
-              <Button variant="ghost" size="icon" className="rounded-full h-8 w-8">
-                <Instagram className="h-4 w-4" />
+              <Button variant="ghost" size="sm" asChild>
+                <Link href={contactInfo.social.instagram}>
+                  <Instagram className="h-5 w-5" />
+                </Link>
               </Button>
-              <Button variant="ghost" size="icon" className="rounded-full h-8 w-8">
-                <Twitter className="h-4 w-4" />
-              </Button>
-              <Button variant="ghost" size="icon" className="rounded-full h-8 w-8">
-                <Youtube className="h-4 w-4" />
+              <Button variant="ghost" size="sm" asChild>
+                <Link href={contactInfo.social.twitter}>
+                  <Twitter className="h-5 w-5" />
+                </Link>
               </Button>
             </div>
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h3 className="font-medium text-lg mb-6">Quick Links</h3>
-            <ul className="space-y-3">
-              <li>
-                <Link href="/shop" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Shop All Orchids
-                </Link>
-              </li>
-              <li>
-                <Link href="/care-guide" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Orchid Care Guide
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Our Story
-                </Link>
-              </li>
-              <li>
-                <Link href="/blog" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link href="/faq" className="text-muted-foreground hover:text-foreground transition-colors">
-                  FAQs
-                </Link>
-              </li>
-            </ul>
+          <div className="space-y-4">
+            <h4 className="font-semibold">Quick Links</h4>
+            <nav className="flex flex-col space-y-2">
+              <Link
+                href="/"
+                className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+              >
+                Home
+              </Link>
+              <Link
+                href="/about"
+                className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+              >
+                About Us
+              </Link>
+              <Link
+                href="/contact"
+                className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+              >
+                Contact
+              </Link>
+              <Link
+                href="/privacy"
+                className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                href="/terms"
+                className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+              >
+                Terms of Service
+              </Link>
+            </nav>
           </div>
 
-          {/* Contact */}
-          <div>
-            <h3 className="font-medium text-lg mb-6">Contact Us</h3>
-            <ul className="space-y-4">
-              <li className="flex items-start">
-                <MapPin className="h-5 w-5 mr-3 text-[#4F7942] shrink-0 mt-0.5" />
-                <span className="text-muted-foreground">
-                  123 Botanical Gardens Rd.<br />
-                  Portland, OR 97205
-                </span>
-              </li>
-              <li className="flex items-center">
-                <Phone className="h-5 w-5 mr-3 text-[#4F7942]" />
-                <span className="text-muted-foreground">(503) 555-0123</span>
-              </li>
-              <li className="flex items-center">
-                <Mail className="h-5 w-5 mr-3 text-[#4F7942]" />
-                <span className="text-muted-foreground">hello@orchidhaven.com</span>
-              </li>
-            </ul>
+          {/* Categories */}
+          <div className="space-y-4">
+            <h4 className="font-semibold">Categories</h4>
+            <nav className="flex flex-col space-y-2">
+              <Link
+                href="/category/orchids"
+                className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+              >
+                Indoor Orchids
+              </Link>
+              <Link
+                href="/category/roses"
+                className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+              >
+                Roses
+              </Link>
+              <Link
+                href="/category/hoya-tiyara"
+                className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+              >
+                Hoya Tiyara
+              </Link>
+              <Link
+                href="/category/anthuriums"
+                className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+              >
+                Anthuriums
+              </Link>
+              <Link
+                href="/category/ornamental"
+                className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+              >
+                Ornamental Plants
+              </Link>
+            </nav>
           </div>
 
           {/* Newsletter */}
-          <div>
-            <h3 className="font-medium text-lg mb-6">Get Growing Tips</h3>
-            <p className="text-muted-foreground mb-4">
-              Subscribe to our newsletter for orchid care tips and exclusive offers.
+          <div className="space-y-4">
+            <h4 className="font-semibold">Stay Updated</h4>
+            <p className="text-muted-foreground text-sm">
+              Subscribe to get plant care tips and exclusive offers.
             </p>
-            <div className="flex flex-col space-y-2">
-              <Input placeholder="Your email address" type="email" />
-              <Button>Subscribe</Button>
+            <div className="space-y-2">
+              <Input
+                type="email"
+                placeholder="Enter your email"
+                className="w-full"
+              />
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <Button className="w-full bg-green-600 hover:bg-green-700">
+                  Subscribe
+                </Button>
+              </motion.div>
             </div>
           </div>
         </div>
 
-        <Separator className="my-8" />
-
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} OrchidHaven. All rights reserved.
+        <div className="mt-8 pt-8 border-t border-border flex flex-col sm:flex-row justify-between items-center">
+          <p className="text-muted-foreground text-sm">
+            © 2024 KFlora. All rights reserved.
           </p>
-          <div className="flex space-x-4 mt-4 md:mt-0">
-            <Link href="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Terms of Service
-            </Link>
-            <Link href="/shipping" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Shipping Policy
-            </Link>
-          </div>
+          <p className="text-muted-foreground text-sm mt-2 sm:mt-0">
+            Made with 🌱 for plant lovers
+          </p>
         </div>
       </div>
     </footer>

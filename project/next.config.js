@@ -4,7 +4,15 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  images: { unoptimized: true },
+  images: {
+    unoptimized: true, // required for static export
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.pexels.com',
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;
